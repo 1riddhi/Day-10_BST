@@ -14,10 +14,6 @@ public class Bst<T extends Comparable<T>> {
             return new Node<>(data);
         }
 
-        if (data == null) {
-            throw new IllegalArgumentException("Cannot insert null into the tree.");
-        }
-
         if (data.compareTo(root.data) < 0) {
             root.left = insertRec(root.left, data);
         } else if (data.compareTo(root.data) > 0) {
@@ -60,6 +56,16 @@ public class Bst<T extends Comparable<T>> {
         System.out.print(root.data + " ");
     }
 
+    public int size(){
+        return size(root);
+    }
+
+    public int size(Node<T> root){
+        if(root==null) return 0;
+
+        return size(root.left)+size(root.right)+1;
+    }
+
     public static void main(String[] args) {
         Bst<Integer> bst = new Bst<>();
         bst.insert(56);
@@ -77,5 +83,21 @@ public class Bst<T extends Comparable<T>> {
         System.out.println("Postorder");
         bst.postorderTraversal();
         System.out.println();
+
+        bst.insert(22);
+        bst.insert(40);
+        bst.insert(60);
+        bst.insert(95);
+        bst.insert(11);
+        bst.insert(65);
+        bst.insert(3);
+        bst.insert(16);
+        bst.insert(63);
+        bst.insert(67);
+
+        System.out.println(bst.size());
+
+
+        
     }
 }
