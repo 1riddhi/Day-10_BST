@@ -66,6 +66,21 @@ public class Bst<T extends Comparable<T>> {
         return size(root.left)+size(root.right)+1;
     }
 
+    public boolean search(T data){
+        return searchData(root,data);
+   }
+
+   public boolean searchData(Node<T> root, T data){
+       if(root==null) return false;
+       if(root.data.compareTo(data)==0) return true;
+
+       if(data.compareTo(root.data) < 0){
+           return searchData(root.left,data);
+       } else {
+           return searchData(root.right,data);
+       }
+   }
+
     public static void main(String[] args) {
         Bst<Integer> bst = new Bst<>();
         bst.insert(56);
@@ -97,7 +112,8 @@ public class Bst<T extends Comparable<T>> {
 
         System.out.println(bst.size());
 
+        System.out.println("Search 63: "+bst.search(63));
+        System.out.println("Search 64: "+bst.search(64));
 
-        
     }
 }
